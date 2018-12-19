@@ -1,0 +1,43 @@
+.ant-layout {
+  height: 100vh;
+}
+
+.ant-layout-header {
+  padding: 0 20px;
+  font-size: 20px;
+  color: #fff;
+}
+
+.ant-layout-header>div:first-child {
+  float: left;
+}
+
+.ant-layout-header>div:last-child {
+  float: right;
+}
+
+.ant-layout-header>div:last-child a {
+  color: #fff;
+  margin-right: 20px;
+}
+
+.ant-layout .wrap {
+  background: #4b5d6f;
+  margin: 20px auto;
+  margin-top: 60px;
+  width: 500px;
+  color: #fff;
+  border-radius: 4px;
+}
+
+.ant-layout .wrap header {
+  padding: 20px 20px 0 20px;
+}
+
+.ant-layout .wrap .jobs {
+  padding-top: 20px;
+}
+
+.ant-layout .wrap .jobs .loading {
+  text-align: center;
+}

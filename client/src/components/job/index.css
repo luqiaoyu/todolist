@@ -1,0 +1,27 @@
+.job {
+  padding: 10px 20px;
+  background: rgba(255, 255, 255, 0.1);
+  margin-bottom: 10px;
+  display: flex;
+}
+
+.job.done {
+  background: #8e7d7d;
+}
+
+.job .desc {
+  flex-shrink: 1;
+  flex: 1;
+}
+
+.job .operations {
+  width: 40px;
+}
+
+.job .operations label {
+  margin-right: 10px;
+}
+
+.job .operations i {
+  cursor: pointer;
+}
