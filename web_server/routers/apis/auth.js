@@ -5,18 +5,50 @@ const fs = require('fs');
 
 const router = new Router();
 
-router.get('/api/auth/register', async (ctx, next) => {
+router.post('/api/auth/register', async (ctx, next) => {
   // ctx.type = 'html';
   // ctx.body = fs.createReadStream('./src/server/views/register.html');
   console.log('/api/auth/register');
-  ctx.body =
-    {
-      ...ctx.body,
-      route: ctx.body.route + " -> api auth register",
-      message: ctx.body.message + " register",
-    };
 
-  await next();
+  const { username, password } = ctx.request.body;
+
+  
+
+
+
+
+  // ctx.body = {
+  //   ...ctx.body,
+  //   route: ctx.body.route + " -> api auth register",
+  //   message: ctx.body.message + " register",
+  // };
+
+  // const user = await queries.addUser(ctx.request.body);
+  // passport.authenticate('local', (err, user, info, status) => {
+  //   if (user) {
+  //     ctx.login(user);
+  //     ctx.redirect('/auth/status');
+  //   } else {
+  //     ctx.status = 400;
+  //     ctx.body = { status: 'error' };
+  //   }
+  // })(ctx);
+
+});
+
+router.post('/api/auth/login', async (ctx, next) => {
+
+
+
+  // return passport.authenticate('local', (err, user, info, status) => {
+  //   if (user) {
+  //     ctx.login(user);
+  //     ctx.redirect('/auth/status');
+  //   } else {
+  //     ctx.status = 400;
+  //     ctx.body = { status: 'error' };
+  //   }
+  // })(ctx);
 });
 
 module.exports = router;

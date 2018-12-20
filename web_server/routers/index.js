@@ -1,6 +1,7 @@
 const Router = require('koa-router');
+const apiRouters = require('./apis');
+
 const router = new Router();
-const authApiRouters = require('./apis/auth');
 
 // response
 router.use(async (ctx, next) => {
@@ -22,7 +23,6 @@ router.all('/', async (ctx, next) => {
   await next();
 });
 
-router.use(authApiRouters.routes());
-
+router.use(apiRouters.routes());
 
 module.exports = router;
