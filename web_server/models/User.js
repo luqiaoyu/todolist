@@ -1,9 +1,12 @@
 
+let _idCounter = 0;
+const _users = [];
 
 class User {
-  static idCounter = 0;
-
-  static users = [];
+  static get idCounter() {return _idCounter;}
+  static set idCounter(value) {_idCounter = value;}
+  
+  static get users() {return _users;}
 
   constructor(userInfo) {
     this.id = User.idCounter++;

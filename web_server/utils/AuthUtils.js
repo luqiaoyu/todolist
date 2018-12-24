@@ -15,8 +15,8 @@ class AuthUtils {
     }
   }
 
-  static InsertUserByUserInfo(userInfo) {
-    await UserUtils.insertUser();
+  static async InsertUserByUserInfo(userInfo) {
+    return await UserUtils.insertUser(userInfo);
   }
 
 
@@ -25,4 +25,4 @@ class AuthUtils {
   }
 }
 
-module.exports = { AuthUtils };
+module.exports = AuthUtils;
