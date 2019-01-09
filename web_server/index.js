@@ -8,13 +8,20 @@ const session = require('koa-session');
 const routers = require('./routers');
 
 
-
 const app = new Koa();
 
 const PORT = process.env.PORT || 1337;
 
 app.use(bodyParser());
 app.use(cors());
+
+app.use(async (ctx, next) => {
+  if(!'state' in ctx){
+    ctx.state={};
+  }
+  await next();
+});
+
 
 // // authentication
 // require('./auth-passport');
@@ -25,7 +32,6 @@ app.use(cors());
 // routes
 app.use(routers.routes());
 app.use(routers.allowedMethods());
-
 
 
 const server = app.listen(PORT, () => {

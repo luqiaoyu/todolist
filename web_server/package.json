@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "@koa/cors": "^2.2.3",
+    "jsonwebtoken": "^8.4.0",
     "koa": "^2.6.2",
     "koa-bodyparser": "^4.2.1",
     "koa-passport": "^4.1.1",
@@ -17,5 +18,10 @@
     "koa-router": "^7.4.0",
     "koa-session": "^5.10.0",
     "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.2.3"
   }
 }

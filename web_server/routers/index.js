@@ -6,21 +6,25 @@ const router = new Router();
 // response
 router.use(async (ctx, next) => {
   console.log("all through");
-  ctx.body = { route: "all through", message: "all-through" };
   await next();
 });
 
+router.get('/test', async (ctx) => {
+  console.log("test success");
+  ctx.body = {
+    ...ctx.body,
+    message:"match /test",
+  };
 
+});
 
 // 只匹配 /
-router.all('/', async (ctx, next) => {
+router.all('/', async (ctx) => {
   console.log("match /");
   ctx.body = {
     ...ctx.body,
-    route: ctx.body.route + " -> /",
-    message: ctx.body.message + " home",
+    message:"match /",
   };
-  await next();
 });
 
 router.use(apiRouters.routes());

@@ -2,8 +2,9 @@ const User = require('./User');
 
 class UserUtils {
 
+  // return null if not exist
+  // return specific user if exist
   static async getUserById(id) {
-
     const targetUsers = User.users.filter(u => u.id === id);
     if (!Array.isArray(targetUsers) || !targetUsers.length) {
       return null;
