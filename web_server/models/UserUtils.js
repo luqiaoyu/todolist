@@ -1,41 +1,32 @@
 const User = require('./User');
+const mongoose = require('mongoose');
+const util = require('util');
 
 class UserUtils {
 
   // return null if not exist
   // return specific user if exist
-  static async getUserById(id) {
-    const targetUsers = User.users.filter(u => u.id === id);
-    if (!Array.isArray(targetUsers) || !targetUsers.length) {
-      return null;
-    } else {
-      return targetUsers[0];
-    }
+  static async findById(id) {
+    return await User.findById(id);
   }
 
-  static async getUserByUsername(username) {
-    const targetUsers = User.users.filter(u => u.username === username);
-    if (!Array.isArray(targetUsers) || !targetUsers.length) {
-      return null;
-    } else {
-      return targetUsers[0];
-    }
+  static async findByUsername(username) {
+    return await User.findOne({username});
   }
 
-  static async insertUser(userInfo) {
-    const { username } = userInfo;
-    const user0 = await this.getUserByUsername(username);
-    if (user0 !== null) {
-      // err = new Error("User already exists");
+  static async insertByUserNamePassword(userInfo){
+    if(!'username' in userInfo || !'password' in userInfo) {
       return null;
-    } else {
+    }
+
+    try{
       const user = new User(userInfo);
-      await User.users.push(user);
-      return user;
+      return await user.save();
+    } catch (e) {
+      console.log('dup username');
+      return null;
     }
   }
-
-  
 }
 
 module.exports = UserUtils;

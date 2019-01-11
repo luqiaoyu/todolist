@@ -1,12 +1,13 @@
 const Router = require('koa-router');
 
 const sessionApiRouters = require('./session');
-const userApiRouters = require('./users');
+const usersApiRouters = require('./users');
+const jobsApiRouters = require('./jobs');
 
 const apiRouter = new Router();
 
 apiRouter.use(sessionApiRouters.routes());
-apiRouter.use(userApiRouters.routes());
-
+apiRouter.use(usersApiRouters.routes());
+apiRouter.use(jobsApiRouters.routes());
 
 module.exports = apiRouter;

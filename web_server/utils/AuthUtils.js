@@ -8,12 +8,14 @@ class AuthUtils {
   static async getUserByUserInfo(userInfo) {
     const {username, password} = userInfo;
 
-    const user = await UserUtils.getUserByUsername(username);
+    const user = await UserUtils.findByUsername(username);
 
     if (user === null) {
-      throw new Error('User not found');
+      // throw new Error('User not found');
+      return null;
     } else if (user.password !== password) {
-      throw new Error('Password incorrect');
+      // throw new Error('Password incorrect');
+      return null;
     } else {
       return user;
     }
@@ -32,7 +34,7 @@ class AuthUtils {
       if (decode.exp < (Date.now() / 1000 | 0)) {
         return false;
       }
-      const user = await UserUtils.getUserByUsername(decode.username);
+      const user = await UserUtils.findByUsername(decode.username);
       return user;
     } catch (e) {
       return null;
@@ -41,12 +43,11 @@ class AuthUtils {
 
   // user: User
   static async generateTokenByUser(user) {
-    const token = await user.generateToken(null);
-    return token;
+    return await user.generateToken(null);
   }
 
-  static async InsertUserByUserInfo(userInfo) {
-    return await UserUtils.insertUser(userInfo);
+  static async insertUserByUsernamePassword(userInfo) {
+    return await UserUtils.insertByUserNamePassword(userInfo);
   }
 
   static test() {

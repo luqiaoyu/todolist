@@ -1,5 +1,5 @@
 const Router = require('koa-router');
-const apiRouters = require('./apis');
+const apiRouters = require('./api');
 
 const router = new Router();
 
@@ -15,7 +15,6 @@ router.get('/test', async (ctx) => {
     ...ctx.body,
     message:"match /test",
   };
-
 });
 
 // 只匹配 /

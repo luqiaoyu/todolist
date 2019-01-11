@@ -1,22 +1,26 @@
 
-const generate403Json = (ctx, message) => {
-  ctx.status = 403;
+const generate4xxJson = (ctx, message, errorCode) => {
+  ctx.status = errorCode;
   ctx.body = {
-    success: false,
-    token: null,
+    ...ctx.body,
+    success:false,
+    token:null,
 
     message,
   }
+};
+
+
+const generate403Json = (ctx, message) => {
+  generate4xxJson(ctx, message, 403);
 };
 
 const generate404Json = (ctx, message) => {
-  ctx.status = 404;
-  ctx.body = {
-    success: false,
-    token: null,
-
-    message,
-  }
+  generate4xxJson(ctx, message, 404);
 };
 
-module.exports = {generate403Json,generate404Json};
+const generate400Json = (ctx, message) =>{
+  generate4xxJson(ctx, message, 400);
+};
+
+module.exports = {generate403Json,generate404Json,generate400Json};

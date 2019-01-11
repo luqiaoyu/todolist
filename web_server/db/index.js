@@ -1,8 +1,8 @@
-const Mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
 const { DbUri } = require('../config');
 
-Mongoose.connect(DbUri, {
+mongoose.connect(DbUri, {
   useNewUrlParser: true,
   connectTimeoutMS: 10000,
   keepAlive: true,

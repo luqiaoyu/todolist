@@ -2,29 +2,63 @@ const AuthUtils = require('../utils/AuthUtils');
 const {generate403Json} = require('../utils/errorJsons');
 const authPrefix = "Bearer ";
 
-const checkToken = async function (ctx, next) {
+// always called
+// in any route
+const tokenToUserLoggedIn = async function (ctx, next) {
   if (!'authorization' in ctx.header) {
-    // raise 403 forbidden
-    generate403Json(ctx, "Authorization failed. token header not found.");
+    ctx.state = {...ctx.state, userLoggedIn: null};
+    await next();
   } else {
     const {authorization} = ctx.header;
-    // console.log("authorization");
-    // console.log(authorization);
     if (typeof authorization !== 'string' || !authorization.startsWith(authPrefix)) {
-      generate403Json("Authorization failed. token format wrong.");
+      console.log("Authorization failed. token format wrong.");
+      ctx.state = {...ctx.state, userLoggedIn: null};
+      await next();
     } else {
       const token = authorization.substring(authPrefix.length);
-      const user = await AuthUtils.getUserFromToken(token);
-      if (user !== null) {
-        delete user['password'];
-        ctx.state = {...ctx.state, user};
-        await next();
+      const userLoggedIn = await AuthUtils.getUserFromToken(token);
+      if (userLoggedIn !== null) {
+        delete userLoggedIn['password'];
       } else {
-        generate403Json("Authorization failed. token error.");
+        console.log("Authorization failed. bad token.");
       }
+      ctx.state = {...ctx.state, userLoggedIn};
+      await next();
     }
   }
 };
 
+// after
+const checkLoggedIn = async function (ctx, next) {
+  const {userLoggedIn} = ctx.state;
+  if (userLoggedIn === undefined || userLoggedIn === null) {
+    generate403Json(ctx, "Authorization failed. token error.");
+  } else {
+    await next();
+  }
+};
 
-module.exports = {checkToken};
+// const checkLoggedIn = async function (ctx, next) {
+//   if (!'authorization' in ctx.header) {
+//     // raise 403 forbidden
+//     generate403Json(ctx, "Authorization failed. token header not found.");
+//   } else {
+//     const {authorization} = ctx.header;
+//     if (typeof authorization !== 'string' || !authorization.startsWith(authPrefix)) {
+//       generate403Json("Authorization failed. token format wrong.");
+//     } else {
+//       const token = authorization.substring(authPrefix.length);
+//       const userLoggedIn = await AuthUtils.getUserFromToken(token);
+//       if (userLoggedIn !== null) {
+//         delete userLoggedIn['password'];
+//         ctx.state = {...ctx.state, userLoggedIn};
+//         await next();
+//       } else {
+//         generate403Json("Authorization failed. token error.");
+//       }
+//     }
+//   }
+// };
+
+
+module.exports = {checkLoggedIn, tokenToUserLoggedIn};

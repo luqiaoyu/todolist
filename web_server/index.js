@@ -7,6 +7,9 @@ const session = require('koa-session');
 
 const routers = require('./routers');
 
+const {tokenToUserLoggedIn, addStateInContext} = require('./middlewares');
+
+require('./db');
 
 const app = new Koa();
 
@@ -15,12 +18,8 @@ const PORT = process.env.PORT || 1337;
 app.use(bodyParser());
 app.use(cors());
 
-app.use(async (ctx, next) => {
-  if(!'state' in ctx){
-    ctx.state={};
-  }
-  await next();
-});
+app.use(addStateInContext);
+app.use(tokenToUserLoggedIn);
 
 
 // // authentication
