@@ -12,9 +12,9 @@ class JobUtils {
     // only same user can update
     return await Job.findOneAndUpdate({
       _id: id,
-      'user.id':user._id,
-      'user.username':user.username,
-      
+      'user.id': user._id,
+      'user.username': user.username,
+
       // user: {
       //   id: user.id,
       //   username: user.username,
@@ -23,6 +23,7 @@ class JobUtils {
       deadline,
       name,
       desc,
+      update_at: Date.now(),
     });
   }
 
@@ -32,15 +33,16 @@ class JobUtils {
 
 // TODO pagination
   static async findAllByUserId(userId) {
-    const res = await Job.find(
+    const jobs = await Job.find(
       {
         'user.id': userId,
-        // user: {
-        //   id: userId
-        // }
       },
     );
-    return res;
+    return jobs;
+  }
+
+  static async findAll(){
+    return await Job.find({});
   }
 
   static async deleteById(id) {
@@ -50,8 +52,8 @@ class JobUtils {
   static async deleteByIdAndUser(id, user) {
     Job.findOneAndDelete({
       _id: id,
-      'user.id':user._id,
-      'user.username':user.username,
+      'user.id': user._id,
+      'user.username': user.username,
 
       // user: {
       //   id: user._id,

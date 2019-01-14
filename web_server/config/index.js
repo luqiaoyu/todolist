@@ -19,6 +19,8 @@ const developmentConfig = {
 const testConfig = {
   ...baseConfig,
   mode: 'test',
+  secret:"test_abcde",
+  DbUri: "mongodb://localhost:27017/todolist_test",
 };
 
 const productionConfig = {

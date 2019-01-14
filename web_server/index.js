@@ -3,6 +3,8 @@ const bodyParser = require('koa-bodyparser');
 const cors = require('@koa/cors');
 const session = require('koa-session');
 
+// const mongoose = require('mongoose');
+
 // const passport = require('koa-passport');
 
 const routers = require('./routers');
@@ -38,3 +40,6 @@ const server = app.listen(PORT, () => {
 });
 
 module.exports = server;
+
+// server.close();
+// mongoose.connection.close();

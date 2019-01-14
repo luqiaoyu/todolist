@@ -1,4 +1,4 @@
-const AuthorizationMiddlewares = require('./Authorization');
+const AuthorizationMiddlewares = require('./authorization');
 const utilsMiddlewares = require('./utils');
 
 

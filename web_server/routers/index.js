@@ -13,6 +13,7 @@ router.get('/test', async (ctx) => {
   console.log("test success");
   ctx.body = {
     ...ctx.body,
+    success:true,
     message:"match /test",
   };
 });
@@ -22,6 +23,7 @@ router.all('/', async (ctx) => {
   console.log("match /");
   ctx.body = {
     ...ctx.body,
+    success:true,
     message:"match /",
   };
 });

@@ -4,7 +4,7 @@ const Router = require('koa-router');
 
 const AuthUtils = require('../../utils/AuthUtils');
 const UserUtils = require('../../models/UserUtils');
-const {checkLoggedIn} = require('../../middlewares/Authorization');
+const {checkLoggedIn} = require('../../middlewares/authorization');
 const {generate404Json, generate403Json, generate400Json} = require('../../utils/errorJsons');
 
 const router = new Router();
