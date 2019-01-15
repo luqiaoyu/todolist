@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const { DbUri } = require('../config');
+const { DbUri } = require('../../config');
 
 mongoose.connect(DbUri, {
   useNewUrlParser: true,

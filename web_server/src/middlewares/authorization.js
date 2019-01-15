@@ -11,7 +11,7 @@ const tokenToUserLoggedIn = async function (ctx, next) {
   } else {
     const {authorization} = ctx.header;
     if (typeof authorization !== 'string' || !authorization.startsWith(authPrefix)) {
-      console.log("Authorization failed. token format wrong.");
+      console.log("Authorization failed. token format wrong or undefined.");
       ctx.state = {...ctx.state, userLoggedIn: null};
       await next();
     } else {

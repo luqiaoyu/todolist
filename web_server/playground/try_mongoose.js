@@ -1,9 +1,9 @@
-const User = require('../models/User');
-const UserUtils = require('../models/UserUtils');
-const Job = require('../models/Job');
-const JobUtils = require('../models/JobUtils');
+const User = require('../src/models/User');
+const UserUtils = require('../src/models/UserUtils');
+const Job = require('../src/models/Job');
+const JobUtils = require('../src/models/JobUtils');
 
-require('../db');
+require('../src/db');
 
 const mongoose = require('mongoose');
 const util = require('util');

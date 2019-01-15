@@ -6,6 +6,17 @@ class JobUtils {
     return await job.save();
   }
 
+  static async insertOne2(jobInfo) {
+    const {deadline, name, desc, user} = jobInfo;
+    const job = new Job({
+      deadline,
+      name,
+      desc,
+      'user.name':user.username,
+    });
+    return await job.save();
+  }
+
   static async findByIdAndUpdate(id, jobInfoUpdated) {
     const {deadline, name, desc, user} = jobInfoUpdated;
 
