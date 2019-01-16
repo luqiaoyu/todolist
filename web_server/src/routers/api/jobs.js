@@ -53,7 +53,7 @@ router.post('/api/jobs/', async (ctx, next) => {
   };
 });
 
-router.all('api/jobs/:id', async (ctx, next) => {
+router.all('/api/jobs/:id', async (ctx, next) => {
   const {id} = ctx.params;
   if (id === undefined) {
     generate404Json("Not found! Invalid input!");
@@ -64,7 +64,7 @@ router.all('api/jobs/:id', async (ctx, next) => {
   await next();
 });
 
-router.get('api/jobs/:id', async (ctx) => {
+router.get('/api/jobs/:id', async (ctx) => {
   const {idQuery} = ctx.state;
   const jobQuery = await JobUtils.findById(idQuery);
 
@@ -83,7 +83,7 @@ router.get('api/jobs/:id', async (ctx) => {
   };
 });
 
-router.put('api/jobs/:id', async (ctx) => {
+router.put('/api/jobs/:id', async (ctx) => {
   const {userLoggedIn, idQuery} = ctx.state;
   const {deadline, name, desc} = ctx.request.body;
   if (userLoggedIn === null) {
@@ -116,7 +116,7 @@ router.put('api/jobs/:id', async (ctx) => {
 
 });
 
-router.delete('api/jobs/:id', async (ctx) => {
+router.delete('/api/jobs/:id', async (ctx) => {
   const {userLoggedIn, idQuery} = ctx.state;
   if (userLoggedIn === null) {
     generate403Json("Not allowed to delete job while not logged in.");

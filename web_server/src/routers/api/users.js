@@ -39,7 +39,7 @@ router.get('/api/users/:username', checkLoggedIn, async (ctx) => {
       ...ctx.body,
       success: true,
       token: null,
-      user: userQuery,
+      user: userLoggedIn,
     };
   } else {
     generate403Json(ctx, "not allowed to see other users 1!");

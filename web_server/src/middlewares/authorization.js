@@ -18,7 +18,8 @@ const tokenToUserLoggedIn = async function (ctx, next) {
       const token = authorization.substring(authPrefix.length);
       const userLoggedIn = await AuthUtils.getUserFromToken(token);
       if (userLoggedIn !== null) {
-        delete userLoggedIn['password'];
+        // delete userLoggedIn['password'];
+        userLoggedIn.password = "";
       } else {
         console.log("Authorization failed. bad token.");
       }

@@ -15,6 +15,7 @@ const developmentConfig = {
   secret: "abcde",
   DbUri: "mongodb://localhost:27017/todolist_dev",
   PORT: 1567,
+  defaultSessionLife:86400,
 };
 
 const testConfig = {
@@ -23,11 +24,13 @@ const testConfig = {
   secret: "test_abcde",
   DbUri: "mongodb://localhost:27017/todolist_test",
   PORT: 2345,
+  defaultSessionLife:86400,
 };
 
 const productionConfig = {
   ...baseConfig,
-  mode: 'production'
+  mode: 'production',
+  defaultSessionLife:7200,
 };
 
 const modeMap = {
